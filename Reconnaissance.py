@@ -46,7 +46,7 @@ while True:
         if len(signs) != 0:
             for (x, y, w, h) in signs:
                 obj = gray[y:y + h, x:x + w]
-                if filename == 'haarstages\speedLimit.xml':
+                if filename == 'haarstages\SpeedLimit.xml':
                     images_files = next(os.walk('data/SpeedLimit'))[1]
                     pourcentage = 0.0
                     seuil = 0.3
@@ -74,7 +74,7 @@ while True:
                     cv.putText(image, object_detected, (x, y), cv.FONT_HERSHEY_COMPLEX, 0.5, (0, 255, 0), 1)
                 cv.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 2)
                 object_detected = 'None'
-            cv.waitKey(0)
+            # cv.waitKey(0)
     if cv.waitKey(1) & 0xFF == ord('q'):
         break
     # image = cv.resize(image, (960, 540))
