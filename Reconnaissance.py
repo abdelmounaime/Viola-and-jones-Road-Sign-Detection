@@ -7,7 +7,7 @@ import glob
 object_detected = "None"
 
 list_xml_files = glob.glob('haarstages/*.xml')
-video_capture = cv.VideoCapture('video/stp.mp4')
+video_capture = cv.VideoCapture('video/videoplayback.mp4')
 
 
 def calcul_sim(image_origine, dataset_subdir, h, w):
@@ -30,6 +30,10 @@ def calcul_sim(image_origine, dataset_subdir, h, w):
 
 while True:
     red, image = video_capture.read()
+
+    # this line is to fix the error of cvtColor, we may need to shape the input image
+    # image = cv.resize(image, (0, 0), fx=1, fy=1)
+
     gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
     for filename in list_xml_files:
         # print(filename)
@@ -73,7 +77,7 @@ while True:
             cv.waitKey(0)
     if cv.waitKey(1) & 0xFF == ord('q'):
         break
-    image = cv.resize(image, (960, 540))
+    # image = cv.resize(image, (960, 540))
     cv.imshow("Video", image)
 video_capture.release()
 cv.destroyAllWindows()
